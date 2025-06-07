@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arenales del Sol - Luxury Beachfront Apartment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #2c2826;
+            background: linear-gradient(135deg, #fef9f2, #f8f3eb);
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #d4a574;
+            color: #8b6f3d;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Georgia, serif;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background: #d4a574;
+            color: white;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 251, 245, 0.95);
+            padding: 25px 50px;
+            backdrop-filter: blur(15px);
+            border-bottom-left-radius: 30px;
+            box-shadow: 0 8px 32px rgba(139, 111, 61, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #8b6f3d;
+            font-size: 1.1rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(212, 165, 116, 0.3);
+            padding-right: 45px;
+            position: relative;
+        }
+
+        .nav-links a:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .nav-links a:hover {
+            color: #d4a574;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(212, 165, 116, 0.6)), 
+                url('imagenes/header.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            font-style: italic;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-tab {
+            background: linear-gradient(135deg, #d4a574, #f4b942);
+            color: white;
+            padding: 18px 35px;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            display: inline-block;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-container {
+            position: relative;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(139, 111, 61, 0.15);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #fef9f2, #f8f3eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b6f3d;
+            font-size: 1.2rem;
+            text-align: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .carousel-slide-content {
+            position: relative;
+            z-index: 2;
+            font-family: Georgia, serif;
+            line-height: 1.8;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 165, 116, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-controls:hover {
+            background: #f4b942;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-controls.prev { left: 25px; }
+        .carousel-controls.next { right: 25px; }
+        .carousel-container:hover .carousel-controls { opacity: 1; }
+
+        .elegant-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 251, 245, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .elegant-arrow {
+            background: transparent;
+            color: #d4a574;
+            border: 2px solid #d4a574;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .elegant-arrow:hover {
+            background: linear-gradient(135deg, #d4a574, #f4b942);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 165, 116, 0.3);
+        }
+
+        .gallery-counter {
+            color: #8b6f3d;
+            font-size: 1.1rem;
+            min-width: 90px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .elegant-indicators {
+            display: flex;
+            gap: 10px;
+        }
+
+        .elegant-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .elegant-dot.active {
+            background: linear-gradient(135deg, #d4a574, #f4b942);
+            transform: scale(1.4);
+            box-shadow: 0 2px 8px rgba(212, 165, 116, 0.4);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+            margin: 60px 0;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 251, 245, 0.8);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 111, 61, 0.1);
+        }
+
+        .info-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4a574, #f4b942);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .info-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #8b6f3d;
+            margin-bottom: 5px;
+        }
+
+        .info-label {
+            color: #a0926e;
+            font-size: 1rem;
+        }
+
+        .description-section {
+            margin: 60px 0;
+            line-height: 1.9;
+            font-size: 1.2rem;
+            color: #6b5d4f;
+        }
+
+        .description-section h3 {
+            color: #8b6f3d;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(212, 165, 116, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .amenities-section {
+            margin: 60px 0;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .amenity-column {
+            background: rgba(255, 251, 245, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .amenity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:last-child {
+            border-bottom: none;
+        }
+
+        .amenity-item:hover {
+            background: rgba(212, 165, 116, 0.1);
+            padding-left: 15px;
+            border-radius: 8px;
+        }
+
+        .amenity-item strong {
+            color: #8b6f3d;
+        }
+
+        .amenity-item span:last-child {
+            color: #a0926e;
+            font-style: italic;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(244, 185, 66, 0.1));
+            padding: 50px;
+            margin: 60px 0;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.3rem;
+            color: #8b6f3d;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #d4a574, #f4b942);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(212, 165, 116, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card.low-season {
+            background: linear-gradient(135deg, #8db4a0, #a5c9b7);
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .price-detail {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #8b6f3d, #6b5d4f);
+            color: white;
+            padding: 80px 50px;
+            text-align: center;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .contact-info {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item {
+            margin: 25px 0;
+            font-size: 1.2rem;
+        }
+
+        .footer-image {
+            margin-top: 50px;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(244, 185, 66, 0.3)), 
+                url('imagenes/footer.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar { padding: 20px 25px; }
+            .nav-links { gap: 25px; }
+            .nav-links a { padding-right: 25px; font-size: 1rem; }
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .content-section { padding: 50px 25px; }
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
+            .amenities-grid { grid-template-columns: 1fr; }
+            .language-selector { top: 10px; left: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="lang-btn active" onclick="switchLanguage('es')">ES</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="switchLanguage('de')">DE</button>
+    </div>
+
+    <!-- CONTENIDO EN ESPAÑOL -->
+    <div class="lang-content active" id="content-es">
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="#alojamiento">Alojamiento</a></li>
+                <li><a href="#ocio">Ocio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Arenales del Sol</h1>
+                <p class="hero-subtitle">Tu refugio de lujo junto al mar</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="alojamiento">
+            <div class="section-tab">Alojamiento</div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1: Salón -->
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Salón principal </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Salon2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Salón principal </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon3.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Salón principal </div>
+                    </div>
+                    <!-- Slide 2: Dormitorio principal -->
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Dormitorio principal<br>con cama doble</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Dormitorio principal<br>con cama doble</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/HabPequenya.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Segundo dormitorio <br>con dos camas individuales</div>
+                    </div>
+                    <!-- Slide 3: Cocina -->
+                    <div class="carousel-slide" style="background-image: url('imagenes/cocina.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍳 Cocina completamente<br>equipada con electrodomésticos</div>
+                    </div>
+                    <!-- Slide 4: Terraza -->
+                    <div class="carousel-slide" style="background-image: url('imagenes/balcon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🌅 Terraza privada con vistas<br>al amanecer y atardecer</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Mesa.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍽️ Mesa con capacidad para 4 personas</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Baño completo </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Baño completo con ducha </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/urba.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Urbanización <br>con piscina</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/noche.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Urbanización <br>con piscina</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/ninyos.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/paseo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>
+                </div>
+                <button class="carousel-controls prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-controls next" onclick="nextSlide()">❯</button>
+            </div>
+
+            <div class="elegant-navigation">
+                <div class="nav-section">
+                    <button class="elegant-arrow" onclick="prevSlide()">❮</button>
+                    <div class="gallery-counter">
+                        <span id="currentSlide">1</span> / <span id="totalSlides">15</span>
+                    </div>
+                    <button class="elegant-arrow" onclick="nextSlide()">❯</button>
+                </div>
+                <div class="elegant-indicators" id="carouselIndicators"></div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">👥</div>
+                    <div class="info-number">4 huéspedes</div>
+                    <div class="info-label">Capacidad máxima</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">2 habitaciones</div>
+                    <div class="info-label">Dormitorios</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🚿</div>
+                    <div class="info-number">1 baño</div>
+                    <div class="info-label">Baño completo</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">3 camas</div>
+                    <div class="info-label">Camas disponibles</div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>Sobre el apartamento</h3>
+                <p>El apartamento está localizado en Arenales del Sol, Alicante, un distrito frente a la playa, el cual es el lugar ideal para practicar actividades de agua como snorkel, kayak, padelSurf... Ya que puedes acceder a esas actividades desde la playa. Puedes también pasar las tardes paseando por la playa o disfrutando de los bares y gastronomía alicantina.</p>
+            </div>
+
+            <div class="amenities-section">
+                <h3>🏠 Equipamiento y distribución</h3>
+                <p>Apartamento de 65 metros cuadrados con capacidad para cuatro huéspedes, distribuido en una habitación doble, una habitación con dos camas individuales y una cocina completamente equipada, el baño está completo con ducha.</p>
+                <p>El apartamento se encuentra dentro de una urbanización privada y tiene disponibles dos piscinas.</p>
+                <p>Además, con el alquiler se incluye una plaza de parking privado dentro de la urbanización.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Completamente amueblado</strong><span>Incluido</span></div>
+                        <div class="amenity-item"><strong>Agua caliente</strong><span>24 horas</span></div>
+                        <div class="amenity-item"><strong>Lavadora</strong><span>Disponible</span></div>
+                        <div class="amenity-item"><strong>Plancha</strong><span>Incluida</span></div>
+                        <div class="amenity-item"><strong>Secador de pelo</strong><span>En el baño</span></div>
+                        <div class="amenity-item"><strong>Batidora</strong><span>En la cocina</span></div>
+                        <div class="amenity-item"><strong>Cafetera</strong><span>Nespresso</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Horno</strong><span>Eléctrico</span></div>
+                        <div class="amenity-item"><strong>Microondas</strong><span>Disponible</span></div>
+                        <div class="amenity-item"><strong>WiFi fibra óptica</strong><span>Alta velocidad</span></div>
+                        <div class="amenity-item"><strong>Ropa de cama</strong><span>Incluida</span></div>
+                        <div class="amenity-item"><strong>Plaza de parking</strong><span>Privada</span></div>
+                        <div class="amenity-item"><strong>Piscina comunitaria</strong><span>Incluída</span></div>
+                        <div class="amenity-item"><strong>Mosquiteras</strong><span>Todas las habitaciones</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <div class="pricing-header">
+                    <h3>💰 Tarifas</h3>
+                    <p>Disfruta de este apartamento desde 35€ la noche en temporada baja.</p>
+                </div>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <div class="price-period">Temporada Alta</div>
+                        <div class="price-amount">Una semana - €730</div>
+                        <div class="price-detail">15 días - €1.350</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">Un mes - €2.500</div>
+                    </div>
+                    <div class="pricing-card low-season">
+                        <div class="price-period">Temporada Baja</div>
+                        <div class="price-amount">Una semana - €370</div>
+                        <div class="price-detail">15 días - €650</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">Un mes - €1.100</div>
+                    </div>
+                </div>
+                <p style="margin-top: 10px;">No dudes en ponerte en contacto con nosotros para otra cantidad de noches de las ofrecidas.</p>
+                <p style="font-size: smaller;">* Temporada alta: Desde el 15 de Mayo hasta el 15 de Septiembre</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="ocio">
+            <div class="section-tab">Ocio y entretenimiento</div>
+            
+            <div class="description-section">
+                <h3>Actividades y experiencias</h3>
+                <p>Arenales del Sol ofrece infinitas posibilidades para el disfrute y la relajación. Desde deportes acuáticos hasta tranquilos paseos por la costa, aquí encontrarás todo para una temporada ideal.</p>
+                
+                <div class="amenities-grid" style="margin-top: 40px;">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🏖️ Playa de arena fina</strong><span>Todo el año</span></div>
+                        <div class="amenity-item"><strong>🏊‍♂️ Piscina</strong><span>Todo el año</span></div>
+                        <div class="amenity-item"><strong>🚣‍♀️ Deportes acuáticos</strong><span>Kayak, paddle surf, tobogán de agua</span></div>
+                        <div class="amenity-item"><strong>🐠 Snorkel</strong><span>Aguas cristalinas</span></div>
+                        <div class="amenity-item"><strong>🚶‍♂️ Paseos marítimos</strong><span>Senderos costeros</span></div>
+                        <div class="amenity-item"><strong>🎣 Pesca deportiva</strong><span>Desde la orilla</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🍽️ Restaurantes locales</strong><span>Gastronomía mediterránea</span></div>
+                        <div class="amenity-item"><strong>🛍️ Centros comerciales</strong><span>15 min en coche</span></div>
+                        <div class="amenity-item"><strong>🎯 Golf</strong><span>Campos cercanos</span></div>
+                        <div class="amenity-item"><strong>🏛️ Santa Pola</strong><span>15 min - Puerto pesquero</span></div>
+                        <div class="amenity-item"><strong>🏰 Alicante centro</strong><span>17 min - Castillo y casco histórico</span></div>
+                        <div class="amenity-item"><strong>✈️ Aeropuerto</strong><span>7 min - Conexiones internacionales</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>📍 ¿Qué hay cerca?</h3>
+                <p>Ubicación privilegiada que combina la tranquilidad de la playa con la proximidad a servicios y atracciones.</p>
+                
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Aeropuerto de Alicante</strong><span>7 minutos</span></div>
+                        <div class="amenity-item"><strong>Centro de Alicante</strong><span>17 minutos</span></div>
+                        <div class="amenity-item"><strong>Santa Pola</strong><span>15 minutos</span></div>
+                        <div class="amenity-item"><strong>Supermercado Mercadona</strong><span>5 minutos</span></div>
+                        <div class="amenity-item"><strong>Farmacia</strong><span>3 minutos</span></div>
+                        <div class="amenity-item"><strong>Restaurantes</strong><span>4 minutos caminando</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Parada de autobús</strong><span>A 300 metros</span></div>
+                        <div class="amenity-item"><strong>Centro médico</strong><span>8 minutos</span></div>
+                        <div class="amenity-item"><strong>Campo de golf</strong><span>17 minutos</span></div>
+                        <div class="amenity-item"><strong>Puerto deportivo</strong><span>10 minutos</span></div>
+                        <div class="amenity-item"><strong>Isla de Tabarca</strong><span>20 min en barco</span></div>
+                        <div class="amenity-item"><strong>Playa</strong><span>A 350 metros</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contacto">
+            <div class="section-tab" style="background: rgba(255, 255, 255, 0.9); color: #8b6f3d;">Contacto</div>
+            
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px;">Para reservas e información</h3>
+                
+                <div class="contact-item">
+                    <strong>📱 Teléfono:</strong> +34 667 094 826
+                </div>
+                
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> arenales@hotmail.es
+                </div>
+                
+                <div class="contact-item">
+                    <strong>🗣️ Idiomas:</strong> Español, Inglés, Alemán y Suizo
+                </div>
+            </div>
+            
+            <div class="footer-image">
+                <em>Te esperamos para vivir experiencias inolvidables en Arenales del Sol</em>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTENIDO EN INGLÉS -->
+    <div class="lang-content" id="content-en">
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="#accommodation">Accommodation</a></li>
+                <li><a href="#leisure">Leisure</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Arenales del Sol</h1>
+                <p class="hero-subtitle">Your luxury seaside retreat</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="accommodation">
+            <div class="section-tab">Accommodation</div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Main living room </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Salon2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Main living room </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon3.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Main living room </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Master bedroom<br>with double bed</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Master bedroom<br>with double bed</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/HabPequenya.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Second bedroom <br>with two single beds</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/cocina.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍳 Fully equipped kitchen<br>with appliances</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/balcon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🌅 Private terrace with<br>sunrise and sunset views</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Mesa.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍽️ Table for 4 people</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Full bathroom </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Full bathroom with shower </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/urba.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Complex <br>with pool</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/noche.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Complex <br>with pool</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/ninyos.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/paseo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>    
+                </div>
+                <button class="carousel-controls prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-controls next" onclick="nextSlide()">❯</button>
+            </div>
+
+            <div class="elegant-navigation">
+                <div class="nav-section">
+                    <button class="elegant-arrow" onclick="prevSlide()">❮</button>
+                    <div class="gallery-counter">
+                        <span id="currentSlide-en">1</span> / <span id="totalSlides-en">15</span>
+                    </div>
+                    <button class="elegant-arrow" onclick="nextSlide()">❯</button>
+                </div>
+                <div class="elegant-indicators" id="carouselIndicators-en"></div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">👥</div>
+                    <div class="info-number">4 guests</div>
+                    <div class="info-label">Maximum capacity</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">2 bedrooms</div>
+                    <div class="info-label">Bedrooms</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🚿</div>
+                    <div class="info-number">1 bathroom</div>
+                    <div class="info-label">Full bathroom</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">3 beds</div>
+                    <div class="info-label">Available beds</div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>About the apartment</h3>
+                <p>The apartment is located in Arenales del Sol, Alicante, a beachfront district, which is the ideal place to practice water activities such as snorkeling, kayaking, paddle surfing... since you can access these activities from the beach. You can also spend the afternoons walking along the beach or enjoying the bars and Alicante gastronomy.</p>
+            </div>
+
+            <div class="amenities-section">
+                <h3>🏠 Equipment and layout</h3>
+                <p>65 square meter apartment with capacity for four guests, distributed in a double room, a room with two single beds and a fully equipped kitchen, the bathroom is complete with shower.</p>
+                <p>The apartment is located within a private urbanization and has two pools available.</p>
+                <p>In addition, the rental includes a private parking space within the urbanization.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Fully furnished</strong><span>Included</span></div>
+                        <div class="amenity-item"><strong>Hot water</strong><span>24 hours</span></div>
+                        <div class="amenity-item"><strong>Washing machine</strong><span>Available</span></div>
+                        <div class="amenity-item"><strong>Iron</strong><span>Included</span></div>
+                        <div class="amenity-item"><strong>Hair dryer</strong><span>In bathroom</span></div>
+                        <div class="amenity-item"><strong>Blender</strong><span>In kitchen</span></div>
+                        <div class="amenity-item"><strong>Coffee maker</strong><span>Nespresso</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Oven</strong><span>Electric</span></div>
+                        <div class="amenity-item"><strong>Microwave</strong><span>Available</span></div>
+                        <div class="amenity-item"><strong>Fiber optic WiFi</strong><span>High speed</span></div>
+                        <div class="amenity-item"><strong>Bed linen</strong><span>Included</span></div>
+                        <div class="amenity-item"><strong>Parking space</strong><span>Private</span></div>
+                        <div class="amenity-item"><strong>Community pool</strong><span>Included</span></div>
+                        <div class="amenity-item"><strong>Mosquito nets</strong><span>All rooms</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <div class="pricing-header">
+                    <h3>💰 Rates</h3>
+                    <p>Enjoy this apartment from €35 per night in low season.</p>
+                </div>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <div class="price-period">High Season</div>
+                        <div class="price-amount">One week - €730</div>
+                        <div class="price-detail">15 days - €1,350</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">One month - €2,500</div>
+                    </div>
+                    <div class="pricing-card low-season">
+                        <div class="price-period">Low Season</div>
+                        <div class="price-amount">One week - €370</div>
+                        <div class="price-detail">15 days - €650</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">One month - €1,100</div>
+                    </div>
+                </div>
+                <p style="margin-top: 10px;">Do not hesitate to contact us for other amounts of nights than those offered.</p>
+                <p style="font-size: smaller;">* High season: From May 15 to September 15</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="leisure">
+            <div class="section-tab">Leisure & Entertainment</div>
+            
+            <div class="description-section">
+                <h3>Activities and experiences</h3>
+                <p>Arenales del Sol offers infinite possibilities for enjoyment and relaxation. From water sports to quiet walks along the coast, here you will find everything for an ideal stay.</p>
+                
+                <div class="amenities-grid" style="margin-top: 40px;">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🏖️ Fine sand beach</strong><span>All year round</span></div>
+                        <div class="amenity-item"><strong>🏊‍♂️ Pool</strong><span>All year round</span></div>
+                        <div class="amenity-item"><strong>🚣‍♀️ Water sports</strong><span>Kayak, paddle surf, water slide</span></div>
+                        <div class="amenity-item"><strong>🐠 Snorkeling</strong><span>Crystal clear waters</span></div>
+                        <div class="amenity-item"><strong>🚶‍♂️ Seaside walks</strong><span>Coastal trails</span></div>
+                        <div class="amenity-item"><strong>🎣 Sport fishing</strong><span>From the shore</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🍽️ Local restaurants</strong><span>Mediterranean gastronomy</span></div>
+                        <div class="amenity-item"><strong>🛍️ Shopping centers</strong><span>15 min by car</span></div>
+                        <div class="amenity-item"><strong>🎯 Golf</strong><span>Nearby courses</span></div>
+                        <div class="amenity-item"><strong>🏛️ Santa Pola</strong><span>15 min - Fishing port</span></div>
+                        <div class="amenity-item"><strong>🏰 Alicante center</strong><span>17 min - Castle and historic center</span></div>
+                        <div class="amenity-item"><strong>✈️ Airport</strong><span>7 min - International connections</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>📍 What's nearby?</h3>
+                <p>Privileged location that combines the tranquility of the beach with proximity to services and attractions.</p>
+                
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Alicante Airport</strong><span>7 minutes</span></div>
+                        <div class="amenity-item"><strong>Alicante center</strong><span>17 minutes</span></div>
+                        <div class="amenity-item"><strong>Santa Pola</strong><span>15 minutes</span></div>
+                        <div class="amenity-item"><strong>Mercadona Supermarket</strong><span>5 minutes</span></div>
+                        <div class="amenity-item"><strong>Pharmacy</strong><span>3 minutes</span></div>
+                        <div class="amenity-item"><strong>Restaurants</strong><span>4 minutes walking</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Bus stop</strong><span>300 meters away</span></div>
+                        <div class="amenity-item"><strong>Medical center</strong><span>8 minutes</span></div>
+                        <div class="amenity-item"><strong>Golf course</strong><span>17 minutes</span></div>
+                        <div class="amenity-item"><strong>Marina</strong><span>10 minutes</span></div>
+                        <div class="amenity-item"><strong>Tabarca Island</strong><span>20 min by boat</span></div>
+                        <div class="amenity-item"><strong>Beach</strong><span>350 meters away</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="section-tab" style="background: rgba(255, 255, 255, 0.9); color: #8b6f3d;">Contact</div>
+            
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px;">For bookings and information</h3>
+                
+                <div class="contact-item">
+                    <strong>📱 Phone:</strong> +34 667 094 826
+                </div>
+                
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> arenales@hotmail.es
+                </div>
+                
+                <div class="contact-item">
+                    <strong>🗣️ Languages:</strong> Spanish, English, German & Swiss
+                </div>
+            </div>
+            
+            <div class="footer-image">
+                <em>We look forward to hosting your unforgettable experience in Arenales del Sol</em>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTENIDO EN ALEMÁN -->
+    <div class="lang-content" id="content-de">
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="#unterkunft">Unterkunft</a></li>
+                <li><a href="#freizeit">Freizeit</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Arenales del Sol</h1>
+                <p class="hero-subtitle">Ihr luxuriöser Rückzugsort am Meer</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="unterkunft">
+            <div class="section-tab">Unterkunft</div>
+            
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Hauptwohnzimmer </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Salon2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Hauptwohnzimmer </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/salon3.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🏠 Hauptwohnzimmer </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Hauptschlafzimmer<br>mit Doppelbett</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/hab2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Hauptschlafzimmer<br>mit Doppelbett</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/HabPequenya.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛏️ Zweites Schlafzimmer <br>mit zwei Einzelbetten</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/cocina.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍳 Voll ausgestattete Küche<br>mit Geräten</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/balcon.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🌅 Private Terrasse mit<br>Sonnenauf- und untergangsblick</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/Mesa.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🍽️ Tisch für 4 Personen</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Vollbad </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/banyo2.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">🛁 Vollbad mit Dusche </div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/urba.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Wohnanlage <br>mit Pool</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/noche.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Wohnanlage <br>mit Pool</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/ninyos.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>
+                    <div class="carousel-slide" style="background-image: url('imagenes/paseo.jpg'); background-size: cover; background-position: center;">
+                        <div class="carousel-slide-content">Arenales del Sol</div>
+                    </div>
+                </div>
+                <button class="carousel-controls prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-controls next" onclick="nextSlide()">❯</button>
+            </div>
+
+            <div class="elegant-navigation">
+                <div class="nav-section">
+                    <button class="elegant-arrow" onclick="prevSlide()">❮</button>
+                    <div class="gallery-counter">
+                        <span id="currentSlide-de">1</span> / <span id="totalSlides-de">15</span>
+                    </div>
+                    <button class="elegant-arrow" onclick="nextSlide()">❯</button>
+                </div>
+                <div class="elegant-indicators" id="carouselIndicators-de"></div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">👥</div>
+                    <div class="info-number">4 Gäste</div>
+                    <div class="info-label">Maximale Kapazität</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">2 Schlafzimmer</div>
+                    <div class="info-label">Schlafräume</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🚿</div>
+                    <div class="info-number">1 Badezimmer</div>
+                    <div class="info-label">Vollbad</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🛏️</div>
+                    <div class="info-number">3 Betten</div>
+                    <div class="info-label">Verfügbare Betten</div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>Über die Wohnung</h3>
+                <p>Die Wohnung befindet sich in Arenales del Sol, Alicante, einem Bezirk direkt am Strand, der der ideale Ort ist, um Wasseraktivitäten wie Schnorcheln, Kajakfahren, Paddle-Surfen zu praktizieren... da Sie diese Aktivitäten vom Strand aus erreichen können. Sie können auch die Nachmittage beim Spaziergang am Strand verbringen oder die Bars und Gastronomie von Alicante genießen.</p>
+            </div>
+
+            <div class="amenities-section">
+                <h3>🏠 Ausstattung und Grundriss</h3>
+                <p>65 Quadratmeter große Wohnung mit Platz für vier Gäste, verteilt auf ein Doppelzimmer, ein Zimmer mit zwei Einzelbetten und eine voll ausgestattete Küche, das Badezimmer ist komplett mit Dusche.</p>
+                <p>Die Wohnung befindet sich in einer privaten Urbanisation und verfügt über zwei Pools.</p>
+                <p>Außerdem ist im Mietpreis ein privater Parkplatz innerhalb der Urbanisation enthalten.</p>
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Vollmöbliert</strong><span>Inklusive</span></div>
+                        <div class="amenity-item"><strong>Warmwasser</strong><span>24 Stunden</span></div>
+                        <div class="amenity-item"><strong>Waschmaschine</strong><span>Verfügbar</span></div>
+                        <div class="amenity-item"><strong>Bügeleisen</strong><span>Inklusive</span></div>
+                        <div class="amenity-item"><strong>Haartrockner</strong><span>Im Bad</span></div>
+                        <div class="amenity-item"><strong>Mixer</strong><span>In der Küche</span></div>
+                        <div class="amenity-item"><strong>Kaffeemaschine</strong><span>Nespresso</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Backofen</strong><span>Elektrisch</span></div>
+                        <div class="amenity-item"><strong>Mikrowelle</strong><span>Verfügbar</span></div>
+                        <div class="amenity-item"><strong>Glasfaser-WiFi</strong><span>Hochgeschwindigkeit</span></div>
+                        <div class="amenity-item"><strong>Bettwäsche</strong><span>Inklusive</span></div>
+                        <div class="amenity-item"><strong>Parkplatz</strong><span>Privat</span></div>
+                        <div class="amenity-item"><strong>Gemeinschaftspool</strong><span>Inklusive</span></div>
+                        <div class="amenity-item"><strong>Moskitonetze</strong><span>Alle Zimmer</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <div class="pricing-header">
+                    <h3>💰 Preise</h3>
+                    <p>Genießen Sie diese Wohnung ab 35€ pro Nacht in der Nebensaison.</p>
+                </div>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <div class="price-period">Hochsaison</div>
+                        <div class="price-amount">Eine Woche - €730</div>
+                        <div class="price-detail">15 Tage - €1.350</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">Ein Monat - €2.500</div>
+                    </div>
+                    <div class="pricing-card low-season">
+                        <div class="price-period">Nebensaison</div>
+                        <div class="price-amount">Eine Woche - €370</div>
+                        <div class="price-detail">15 Tage - €650</div>
+                        <div style="margin: 15px 0;"></div>
+                        <div class="price-amount">Ein Monat - €1.100</div>
+                    </div>
+                </div>
+                <p style="margin-top: 10px;">Zögern Sie nicht, uns für andere Übernachtungsmengen als die angebotenen zu kontaktieren.</p>
+                <p style="font-size: smaller;">* Hochsaison: Vom 15. Mai bis 15. September</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="freizeit">
+            <div class="section-tab">Freizeit & Unterhaltung</div>
+            
+            <div class="description-section">
+                <h3>Aktivitäten und Erlebnisse</h3>
+                <p>Arenales del Sol bietet unendliche Möglichkeiten für Genuss und Entspannung. Von Wassersport bis zu ruhigen Spaziergängen entlang der Küste, hier finden Sie alles für einen idealen Aufenthalt.</p>
+                
+                <div class="amenities-grid" style="margin-top: 40px;">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🏖️ Feinsandstrand</strong><span>Das ganze Jahr</span></div>
+                        <div class="amenity-item"><strong>🏊‍♂️ Pool</strong><span>Das ganze Jahr</span></div>
+                        <div class="amenity-item"><strong>🚣‍♀️ Wassersport</strong><span>Kajak, Paddle-Surf, Wasserrutsche</span></div>
+                        <div class="amenity-item"><strong>🐠 Schnorcheln</strong><span>Kristallklares Wasser</span></div>
+                        <div class="amenity-item"><strong>🚶‍♂️ Spaziergänge am Meer</strong><span>Küstenwege</span></div>
+                        <div class="amenity-item"><strong>🎣 Sportfischen</strong><span>Vom Ufer aus</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>🍽️ Lokale Restaurants</strong><span>Mediterrane Gastronomie</span></div>
+                        <div class="amenity-item"><strong>🛍️ Einkaufszentren</strong><span>15 Min. mit dem Auto</span></div>
+                        <div class="amenity-item"><strong>🎯 Golf</strong><span>Nahe gelegene Plätze</span></div>
+                        <div class="amenity-item"><strong>🏛️ Santa Pola</strong><span>15 Min. - Fischerhafen</span></div>
+                        <div class="amenity-item"><strong>🏰 Alicante Zentrum</strong><span>17 Min. - Burg und historisches Zentrum</span></div>
+                        <div class="amenity-item"><strong>✈️ Flughafen</strong><span>7 Min. - Internationale Verbindungen</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description-section">
+                <h3>📍 Was ist in der Nähe?</h3>
+                <p>Privilegierte Lage, die die Ruhe des Strandes mit der Nähe zu Dienstleistungen und Attraktionen verbindet.</p>
+                
+                <div class="amenities-grid">
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Flughafen Alicante</strong><span>7 Minuten</span></div>
+                        <div class="amenity-item"><strong>Alicante Zentrum</strong><span>17 Minuten</span></div>
+                        <div class="amenity-item"><strong>Santa Pola</strong><span>15 Minuten</span></div>
+                        <div class="amenity-item"><strong>Mercadona Supermarkt</strong><span>5 Minuten</span></div>
+                        <div class="amenity-item"><strong>Apotheke</strong><span>3 Minuten</span></div>
+                        <div class="amenity-item"><strong>Restaurants</strong><span>4 Minuten zu Fuß</span></div>
+                    </div>
+                    <div class="amenity-column">
+                        <div class="amenity-item"><strong>Bushaltestelle</strong><span>300 Meter entfernt</span></div>
+                        <div class="amenity-item"><strong>Ärztezentrum</strong><span>8 Minuten</span></div>
+                        <div class="amenity-item"><strong>Golfplatz</strong><span>17 Minuten</span></div>
+                        <div class="amenity-item"><strong>Sporthafen</strong><span>10 Minuten</span></div>
+                        <div class="amenity-item"><strong>Insel Tabarca</strong><span>20 Min. mit dem Boot</span></div>
+                        <div class="amenity-item"><strong>Strand</strong><span>350 Meter entfernt</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="kontakt">
+            <div class="section-tab" style="background: rgba(255, 255, 255, 0.9); color: #8b6f3d;">Kontakt</div>
+            
+            <div class="contact-info">
+                <h3 style="margin-bottom: 30px;">Für Buchungen und Informationen</h3>
+                
+                <div class="contact-item">
+                    <strong>📱 Telefon:</strong> +34 667 094 826
+                </div>
+                
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> arenales@hotmail.es
+                </div>
+                
+                <div class="contact-item">
+                    <strong>🗣️ Sprachen:</strong> Spanisch, Englisch, Deutsch & Schweizerdeutsch
+                </div>
+            </div>
+            
+            <div class="footer-image">
+                <em>Wir freuen uns darauf, Ihnen unvergessliche Erlebnisse in Arenales del Sol zu bieten</em>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Variables del carrusel
+        let currentSlideIndex = 0;
+        const totalSlides = 15;
+        let autoSlideTimer;
+
+        // Función para cambiar idioma
+        function switchLanguage(lang) {
+            // Ocultar todo el contenido
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Mostrar contenido del idioma seleccionado
+            document.getElementById(`content-${lang}`).classList.add('active');
+            
+            // Actualizar botones de idioma
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Reinicializar carrusel para el nuevo idioma
+            initCarousel();
+        }
+
+        // Inicializar el carrusel
+        function initCarousel() {
+            const activeContent = document.querySelector('.lang-content.active');
+            const indicatorsContainer = activeContent.querySelector('.elegant-indicators');
+            
+            // Limpiar indicadores existentes
+            indicatorsContainer.innerHTML = '';
+            
+            // Generar indicadores
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'elegant-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                indicatorsContainer.appendChild(dot);
+            }
+            
+            // Resetear posición
+            currentSlideIndex = 0;
+            updateCarousel();
+            
+            // Iniciar auto-slide
+            startAutoSlide();
+        }
+
+        // Actualizar posición del carrusel
+        function updateCarousel() {
+            const activeContent = document.querySelector('.lang-content.active');
+            const track = activeContent.querySelector('.carousel-track');
+            const currentSlideElement = activeContent.querySelector('[id^="currentSlide"]');
+            const dots = activeContent.querySelectorAll('.elegant-dot');
+            
+            // Actualizar posición
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            // Actualizar contador
+            if (currentSlideElement) {
+                currentSlideElement.textContent = currentSlideIndex + 1;
+            }
+            
+            // Actualizar indicadores
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlideIndex);
+            });
+        }
+
+        // Ir a una diapositiva específica
+        function goToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            
+            currentSlideIndex = index;
+            updateCarousel();
+            restartAutoSlide();
+        }
+
+        // Diapositiva anterior
+        function prevSlide() {
+            goToSlide(currentSlideIndex - 1);
+        }
+
+        // Siguiente diapositiva
+        function nextSlide() {
+            goToSlide(currentSlideIndex + 1);
+        }
+
+        // Auto-slide
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => {
+                nextSlide();
+            }, 5000); // Cambia cada 5 segundos
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideTimer) {
+                clearInterval(autoSlideTimer);
+            }
+        }
+
+        function restartAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+
+        // Inicialización cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousel();
+            
+            // Pausar auto-slide cuando se hace hover sobre el carrusel
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+                carouselContainer.addEventListener('mouseleave', startAutoSlide);
+            }
+        });
+
+        // Smooth scrolling para la navegación
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Efecto parallax suave en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
